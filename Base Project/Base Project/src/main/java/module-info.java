@@ -2,6 +2,9 @@ module com.example.baseproject {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javafx.graphics;
+    requires java.sql;
+
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -10,6 +13,5 @@ module com.example.baseproject {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.baseproject to javafx.fxml;
-    exports com.example.baseproject;
+    opens com.example.baseproject ;
 }
