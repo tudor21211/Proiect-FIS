@@ -49,7 +49,7 @@
                     </font>
                 </Button>
             <Label fx:id="invalidLogin" layoutX="79.0" layoutY="213.0" prefHeight="19.0" prefWidth="168.0" textAlignment="CENTER" textFill="#df0f0f" />
-            <Button fx:id="cancelButton" layoutX="228.0" layoutY="8.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #FF0000;" text="Cancel" textFill="WHITE" />
+            <Button fx:id="cancelButton" layoutX="232.0" layoutY="1.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" style="-fx-background-color: #FF0000;" text="Cancel" textFill="WHITE" />
             </children>
         </AnchorPane>
     </right>
