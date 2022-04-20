@@ -12,7 +12,6 @@ public class DBConnection {
         String dataBaseUser = "root";
         String dataBasePassword = "parolaUsersDB";
         String url = "jdbc:mysql://localhost/" + dataBaseName;
-
         try {
                 Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
                 dataBaseLink = DriverManager.getConnection(url,dataBaseUser,dataBasePassword);

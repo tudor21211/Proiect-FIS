@@ -1,11 +1,9 @@
 package com.example.baseproject;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -13,12 +11,15 @@ import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+
+
 public class LoginController implements Initializable {
-@FXML
+ @FXML
     private Button loginButton;
  @FXML
     private Label invalidLogin;
@@ -33,9 +34,10 @@ public class LoginController implements Initializable {
  @FXML
  private TextField userField;
  @FXML
- private TextField passField;
+ private PasswordField passField;
 @FXML
 private Label newRegistration;
+
 
     private static final String IDLE_BUTTON_STYLE = "-fx-background-color:  #323D42; -fx-text-fill: #FFFFFF;";
     private static final String IDLE_BUTTON_STYLE_Cancel = "-fx-background-color:   #FF0000; -fx-text-fill: #FFFFFF;";
@@ -56,27 +58,36 @@ private Label newRegistration;
         cancelButton.setStyle(IDLE_BUTTON_STYLE_Cancel);
         cancelButton.setOnMouseEntered(e -> cancelButton.setStyle(HOVERED_BUTTON_STYLE_Cancel));
         cancelButton.setOnMouseExited(e -> cancelButton.setStyle(IDLE_BUTTON_STYLE_Cancel));
+
+
+
+
+        registerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+                if (!userField.getText().trim().isEmpty() && !passField.getText().trim().isEmpty()) {
+                    DBUtils.signUpUser(userField.getText(),passField.getText(),0);
+                    //newRegistration.setText("User "+userField.getText()+" registered succesfully");
+                    invalidLogin.setText("");
+                }else
+                {
+                    invalidLogin.setText("Fill all info to register");
+                    System.out.println("Fill in all info");
+                }
+            }
+        });
     }
 
     public void loginButtonOnAction() {
-
-
         if (!userField.getText().isBlank() && !passField.getText().isBlank()) {
             invalidLogin.setText("Check login...");
+            newRegistration.setText("");
             validateLogin();
         }else
         {
             invalidLogin.setText("Enter user and password please...");
-        }
-    }
-
-    public void registrationButtonOnAction(){
-        if (!userField.getText().isBlank() && !passField.getText().isBlank()) {
-            newRegistration.setText("Try again to register...");
-            //signUpUser(userField.getText(),passField.getText(),0);
-        }else
-        {
-            newRegistration.setText("Enter user and password please...");
+            newRegistration.setText("");
         }
     }
 
@@ -85,33 +96,8 @@ private Label newRegistration;
 
      Stage stage = (Stage) cancelButton.getScene().getWindow();
      stage.close();
+
     }
-
-    /*public void newRegister(){
-        DBConnection connectNow = new DBConnection();
-        Connection connectDB = connectNow.getConnection();
-        String registration = "INSERT INTO user_account (username, password, balance) VALUES " + "(" + "'"+ userField.getText()+"'"+ "," + "'"+ passField.getText()+"'" + "," + 0+")";
-
-        try {
-
-            Statement statement = connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(registration);
-
-
-            while (queryResult.next()) {
-                if (queryResult.getInt(1)==1){
-                    newRegistration.setText("Welcome new registered user "+userField.getText());
-                }else {
-                    newRegistration.setText("Try again to register...");
-                }
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
-    }*/
-
 
     public void validateLogin(){
             DBConnection connectNow = new DBConnection();
@@ -127,8 +113,10 @@ private Label newRegistration;
                 while (queryResult.next()) {
                     if (queryResult.getInt(1)==1){
                         invalidLogin.setText("Welcome "+userField.getText());
+                        newRegistration.setText("");
                     }else {
                         invalidLogin.setText("Invalid login credentials");
+                        newRegistration.setText("");
                     }
                 }
 
@@ -140,66 +128,7 @@ private Label newRegistration;
     }
 
 
-    public static void signUpUser(String username, String password, int  balance) {
-        Connection connection = null;
-        PreparedStatement psInsert = null;
-        PreparedStatement psCheckUsername = null;
-        ResultSet resultSet = null;
-        try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb","root","parolaUsersDB");
-            psCheckUsername = connection.prepareStatement("SELECT * FROM user_account WHERE username = ?");
-            psCheckUsername.setString(1,username);
-            resultSet = psCheckUsername.executeQuery();
 
-            if (resultSet.isBeforeFirst()){
-                System.out.println("User already exists");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Username already taken");
-                alert.show();
-            }
-            else {
-                psInsert = connection.prepareStatement("Insert INTO user_account(username, password, balance) VALUES (?,?,?)");
-                psInsert.setString(1,username);
-                psInsert.setString(2,password);
-                psInsert.setInt(3,balance);
-                psInsert.executeQuery();
-
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-        finally {
-            if (resultSet != null){
-                try {
-                    resultSet.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (psCheckUsername != null) {
-                try {
-                    psCheckUsername.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (psInsert != null) {
-                try {
-                    psInsert.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
 
 }
