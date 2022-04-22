@@ -19,7 +19,11 @@ import java.net.URL;
 
 
 public class LoginController implements Initializable {
- @FXML
+    public Button backButton;
+    public Button admLog;
+    @FXML
+    private TextField codeField;
+    @FXML
     private Button loginButton;
  @FXML
     private Label invalidLogin;
@@ -99,6 +103,28 @@ private Label newRegistration;
 
     }
 
+    public void logAdmButtonOnAction()
+    {
+        codeField.setVisible(true);
+        backButton.setVisible(true);
+        admLog.setVisible(true);
+    }
+
+    public void backButtonOnAction()
+    {
+        codeField.setVisible(false);
+        backButton.setVisible(false);
+        admLog.setVisible(false);
+    }
+
+    public void admLogOnAction()
+    {
+        if (!codeField.getText().isBlank())
+        {
+            validateAdminLogin();
+        }
+    }
+
     public void validateLogin(){
             DBConnection connectNow = new DBConnection();
             Connection connectDB = connectNow.getConnection();
@@ -124,6 +150,38 @@ private Label newRegistration;
                 e.printStackTrace();
                 e.getCause();
             }
+
+    }
+
+    public void validateAdminLogin()
+    {
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String verifyCode = "SELECT count(1) FROM admin_codes WHERE code ='"+codeField.getText()+"'";
+
+        try
+        {
+            Statement statement = connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyCode);
+
+            while (queryResult.next())
+            {
+                if(queryResult.getInt(1)==1)
+                {
+                    invalidLogin.setText("Welcome "+codeField.getText());
+                }
+                else
+                {
+                    invalidLogin.setText("Invalid code");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            e.getCause();
+        }
 
     }
 

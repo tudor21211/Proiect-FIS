@@ -44,7 +44,7 @@
                         <Font name="Arial" size="12.356435775756836" />
                     </font>
                 </Button>
-                <Button fx:id="logAdmButton" alignment="CENTER" layoutX="25.0" layoutY="356.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #323D42; -fx-text-fill: #FFFFFF; -fx-cursor: hand;" text="Login as Admin">
+                <Button fx:id="logAdmButton" alignment="CENTER" layoutX="25.0" layoutY="356.0" mnemonicParsing="false" onAction="#logAdmButtonOnAction" prefHeight="29.0" prefWidth="127.0" style="-fx-background-color: #323D42; -fx-text-fill: #FFFFFF; -fx-cursor: hand;" text="Login as Admin">
                     <font>
                         <Font name="Arial" size="12.356435775756836" />
                     </font>
@@ -61,6 +61,9 @@
                   </DropShadow>
                </effect></Label>
             <PasswordField fx:id="passField" layoutX="76.0" layoutY="109.0" prefHeight="28.0" prefWidth="176.0" promptText="Enter password..." style="-fx-border-color: #a6a6a6;" />
+            <TextField fx:id="codeField" layoutX="66.0" layoutY="268.0" promptText="Enter code..." visible="false" />
+            <Button fx:id="backButton" layoutX="69.0" layoutY="303.0" mnemonicParsing="false" onAction="#backButtonOnAction" prefHeight="25.0" prefWidth="71.0" text="Back" visible="false" />
+            <Button fx:id="admLog" layoutX="164.0" layoutY="303.0" mnemonicParsing="false" onAction="#admLogOnAction" text="Log in" visible="false" />
             </children>
         </AnchorPane>
     </right>

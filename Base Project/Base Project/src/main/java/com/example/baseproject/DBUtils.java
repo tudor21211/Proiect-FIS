@@ -13,7 +13,7 @@ public class DBUtils {
         ResultSet resultSet = null;
 
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb","root","parolaUsersDB");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb","root","root");
             psCheckUsername = connection.prepareStatement("SELECT * FROM user_account WHERE username = ?");
             psCheckUsername.setString(1,username);
 

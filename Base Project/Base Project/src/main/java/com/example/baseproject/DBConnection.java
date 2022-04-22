@@ -10,7 +10,7 @@ public class DBConnection {
     public Connection getConnection(){
         String dataBaseName = "usersdb";
         String dataBaseUser = "root";
-        String dataBasePassword = "parolaUsersDB";
+        String dataBasePassword = "root";
         String url = "jdbc:mysql://localhost/" + dataBaseName;
         try {
                 Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
