@@ -49,7 +49,8 @@ public class LoginApplication extends Application {
     }
     public static void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(LoginApplication.class.getResource(fxml));
-        stg.getScene().setRoot(pane);
+        //stg.getScene().setRoot(pane);
+        stg.setScene(new Scene(pane,903,567));
     }
     public static void main(String[] args) {
         launch(args);
