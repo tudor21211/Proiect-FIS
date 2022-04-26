@@ -2,7 +2,10 @@ package com.example.baseproject;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -138,6 +141,7 @@ private Label newRegistration;
 
                 while (queryResult.next()) {
                     if (queryResult.getInt(1)==1){
+                        LoginApplication.changeScene("main_view.fxml");
                         invalidLogin.setText("Welcome "+userField.getText());
                         newRegistration.setText("");
                     }else {
@@ -152,6 +156,7 @@ private Label newRegistration;
             }
 
     }
+
 
     public void validateAdminLogin()
     {
