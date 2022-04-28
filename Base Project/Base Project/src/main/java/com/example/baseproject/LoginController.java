@@ -4,13 +4,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +22,7 @@ import java.net.PasswordAuthentication;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
+
 
 
 
@@ -44,7 +49,8 @@ public class LoginController implements Initializable {
  private PasswordField passField;
 @FXML
 private Label newRegistration;
-
+private static Stage stage;
+private Scene scene;
 
     private static final String IDLE_BUTTON_STYLE = "-fx-background-color:  #323D42; -fx-text-fill: #FFFFFF;";
     private static final String IDLE_BUTTON_STYLE_Cancel = "-fx-background-color:   #FF0000; -fx-text-fill: #FFFFFF;";
@@ -77,6 +83,7 @@ private Label newRegistration;
                     DBUtils.signUpUser(userField.getText(),passField.getText(),0);
                     //newRegistration.setText("User "+userField.getText()+" registered succesfully");
                     invalidLogin.setText("");
+
                 }else
                 {
                     invalidLogin.setText("Fill all info to register");
@@ -85,6 +92,9 @@ private Label newRegistration;
             }
         });
     }
+
+
+
 
     public void loginButtonOnAction() {
         if (!userField.getText().isBlank() && !passField.getText().isBlank()) {
@@ -128,20 +138,37 @@ private Label newRegistration;
         }
     }
 
+
+
+
     public void validateLogin(){
             DBConnection connectNow = new DBConnection();
             Connection connectDB = connectNow.getConnection();
-
             String verifyLogin = "SELECT count(1) FROM user_account WHERE username ='" + userField.getText() + "' AND password ='" + passField.getText() + "'";
             try {
 
                 Statement statement = connectDB.createStatement();
                 ResultSet queryResult = statement.executeQuery(verifyLogin);
 
-
                 while (queryResult.next()) {
                     if (queryResult.getInt(1)==1){
-                        LoginApplication.changeScene("main_view.fxml");
+                       // LoginApplication.changeScene2("main_view.fxml");
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/main_view.fxml"));
+
+                            Parent root = (Parent) loader.load();
+                            //if (loader.getController()) System.out.println("aaa");
+                            ViewController viewController = loader.getController();//de linia asta
+                            viewController.setUsernameField(userField.getText());//si de linia asta e nevoie sa poti seta username-ul, teoretic fereastra noua nu inchide pe cea veche din cauza loader-ului dar fara el nu poti seta username-ul in scena noua
+                            Stage stage = (Stage) loginButton.getScene().getWindow();
+                            stage.close();
+                            stage = new Stage();
+                            stage.setScene(new Scene(root,1250,850));
+                            stage.initStyle(StageStyle.UNDECORATED);
+                            stage.show();
+                        }catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         invalidLogin.setText("Welcome "+userField.getText());
                         newRegistration.setText("");
                     }else {
@@ -189,7 +216,6 @@ private Label newRegistration;
         }
 
     }
-
 
 
 

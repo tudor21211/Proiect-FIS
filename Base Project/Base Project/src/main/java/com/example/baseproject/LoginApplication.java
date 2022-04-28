@@ -23,10 +23,13 @@ public class LoginApplication extends Application {
 
     public void start(Stage primaryStage) throws IOException {
         stg = primaryStage;
+        primaryStage.centerOnScreen();
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
         primaryStage.setTitle("Login");
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.UNDECORATED);
+
+
         primaryStage.setScene(new Scene(root, 520, 400));
 
         root.setOnMousePressed(new EventHandler < MouseEvent > () {
@@ -47,12 +50,7 @@ public class LoginApplication extends Application {
         primaryStage.show();
 
     }
-    public static void changeScene(String fxml) throws IOException {
-        Parent pane = FXMLLoader.load(LoginApplication.class.getResource(fxml));
-        //stg.getScene().setRoot(pane);
-        stg.setScene(new Scene(pane,1250,850));
-        stg.centerOnScreen();
-    }
+
 
     public static void main(String[] args) {
         launch(args);
