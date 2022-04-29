@@ -201,7 +201,20 @@ private Scene scene;
             {
                 if(queryResult.getInt(1)==1)
                 {
+
                     invalidLogin.setText("Welcome "+codeField.getText());
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/admin_view.fxml"));
+                        Parent root = (Parent) loader.load();
+                        Stage stage = (Stage) loginButton.getScene().getWindow();
+                        stage.close();
+                        stage = new Stage();
+                        stage.setScene(new Scene(root,1250,850));
+                        stage.initStyle(StageStyle.UNDECORATED);
+                        stage.show();
+                    }catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else
                 {
