@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -51,6 +52,8 @@ public class LoginController implements Initializable {
 private Label newRegistration;
 private static Stage stage;
 private Scene scene;
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     private static final String IDLE_BUTTON_STYLE = "-fx-background-color:  #323D42; -fx-text-fill: #FFFFFF;";
     private static final String IDLE_BUTTON_STYLE_Cancel = "-fx-background-color:   #FF0000; -fx-text-fill: #FFFFFF;";
@@ -145,26 +148,42 @@ private Scene scene;
             DBConnection connectNow = new DBConnection();
             Connection connectDB = connectNow.getConnection();
             String verifyLogin = "SELECT count(1) FROM user_account WHERE username ='" + userField.getText() + "' AND password ='" + passField.getText() + "'";
+            String getBalance = "SELECT balance from user_account where username='"+userField.getText()+"'";
             try {
 
                 Statement statement = connectDB.createStatement();
                 ResultSet queryResult = statement.executeQuery(verifyLogin);
-
                 while (queryResult.next()) {
                     if (queryResult.getInt(1)==1){
                        // LoginApplication.changeScene2("main_view.fxml");
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/main_view.fxml"));
-
                             Parent root = (Parent) loader.load();
-                            //if (loader.getController()) System.out.println("aaa");
                             ViewController viewController = loader.getController();//de linia asta
                             viewController.setUsernameField(userField.getText());//si de linia asta e nevoie sa poti seta username-ul, teoretic fereastra noua nu inchide pe cea veche din cauza loader-ului dar fara el nu poti seta username-ul in scena noua
+                            viewController.setBalanceField();
                             Stage stage = (Stage) loginButton.getScene().getWindow();
                             stage.close();
                             stage = new Stage();
                             stage.setScene(new Scene(root,1250,850));
                             stage.initStyle(StageStyle.UNDECORATED);
+                            Stage finalStage = stage;
+                            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    xOffset = finalStage.getX() - event.getScreenX();
+                                    yOffset = finalStage.getY() - event.getScreenY();
+                                }
+                            });
+
+                            Stage finalStage1 = stage;
+                            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                                @Override
+                                public void handle(MouseEvent event) {
+                                    finalStage1.setX(event.getScreenX() + xOffset);
+                                    finalStage1.setY(event.getScreenY() + yOffset);
+                                }
+                            });
                             stage.show();
                         }catch (IOException e) {
                             e.printStackTrace();

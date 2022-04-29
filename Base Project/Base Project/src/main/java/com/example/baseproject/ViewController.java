@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -28,10 +29,13 @@ public class ViewController extends LoginController {
     private Button logoutButton;
     @FXML
     public Label usernameField;
+    @FXML
+    public Label balanceField;
 
     private Stage stage;
     private Scene scene;
-
+    private double xOffset = 0;
+    private double yOffset = 0;
 private Accordion accordion;
 
 
@@ -49,6 +53,21 @@ private Accordion accordion;
                scene = new Scene (root);
                stage.setScene(scene);
                stage.centerOnScreen();
+                root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        xOffset = stage.getX() - event.getScreenX();
+                        yOffset = stage.getY() - event.getScreenY();
+                    }
+                });
+
+                root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        stage.setX(event.getScreenX() + xOffset);
+                        stage.setY(event.getScreenY() + yOffset);
+                    }
+                });
                stage.show();
 
 
@@ -63,6 +82,26 @@ private Accordion accordion;
 
     }
 
+    public void setBalanceField () {
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+        //System.out.println(usernameField);
+        String getBalance = "SELECT balance from user_account where username='"+usernameField.getText()+"'";
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet bal = statement.executeQuery(getBalance);
+            //balanceField.setText(bal.getString("balance"));
+            while (bal.next()) {
+                String balance = bal.getString("balance");
+                balanceField.setText(balance);
+                System.out.println("Balance:"+balance);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
     }
+
+}
 
