@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,9 +25,8 @@ import java.net.PasswordAuthentication;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
-
-
-
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class LoginController implements Initializable {
     public Button backButton;
@@ -83,7 +84,8 @@ private Scene scene;
             public void handle(ActionEvent actionEvent) {
 
                 if (!userField.getText().trim().isEmpty() && !passField.getText().trim().isEmpty()) {
-                    DBUtils.signUpUser(userField.getText(),passField.getText(),0);
+                    byte[] md5InBytes = digest(passField.getText().getBytes(UTF_8));
+                    DBUtils.signUpUser(userField.getText(),String.format(OUTPUT_FORMAT, "", bytesToHex(md5InBytes)),0);
                     //newRegistration.setText("User "+userField.getText()+" registered succesfully");
                     invalidLogin.setText("");
 
@@ -96,7 +98,27 @@ private Scene scene;
         });
     }
 
+    private static final Charset UTF_8 = StandardCharsets.UTF_8;
+    private static final String OUTPUT_FORMAT = "%-20s:%s";
 
+    private static byte[] digest(byte[] input) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalArgumentException(e);
+        }
+        byte[] result = md.digest(input);
+        return result;
+    }
+
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
+    }
 
 
     public void loginButtonOnAction() {
@@ -147,7 +169,9 @@ private Scene scene;
     public void validateLogin(){
             DBConnection connectNow = new DBConnection();
             Connection connectDB = connectNow.getConnection();
-            String verifyLogin = "SELECT count(1) FROM user_account WHERE username ='" + userField.getText() + "' AND password ='" + passField.getText() + "'";
+            byte[] md5InBytes = digest(passField.getText().getBytes(UTF_8));
+            String parola = String.format(OUTPUT_FORMAT, "", bytesToHex(md5InBytes));
+            String verifyLogin = "SELECT count(1) FROM user_account WHERE username ='" + userField.getText() + "' AND password ='" + parola + "'";
             String getBalance = "SELECT balance from user_account where username='"+userField.getText()+"'";
             try {
 
