@@ -33,6 +33,9 @@ public class AddMatchController extends ViewController{
     @FXML
     private ComboBox comboBoxT2;
 
+    @FXML
+    private TextField startTime;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -63,6 +66,22 @@ public class AddMatchController extends ViewController{
 
     public void createMatchButtonOnAction(ActionEvent event)
     {
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+        String team1 =comboBoxT1.getValue().toString();
+        String team2 =comboBoxT2.getValue().toString();
+        PreparedStatement psInsert = null;
+
+        try {
+            Statement statement = connectDB.createStatement();
+            psInsert = connectDB.prepareStatement("INSERT INTO matches (team1,team2,start) values (?,?,?);");
+            psInsert.setString(1,team1);
+            psInsert.setString(2,team2);
+            psInsert.setString(3,startTime.getText());
+            psInsert.execute(); // de ce nu executeQuery()?
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/baseproject/admin_view.fxml"));
