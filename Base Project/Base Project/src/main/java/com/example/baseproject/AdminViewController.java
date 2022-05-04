@@ -43,6 +43,7 @@ public class AdminViewController {
             stage.setScene(new Scene(root,600,400));
             stage.initStyle(StageStyle.UNDECORATED);
             stage.show();
+            //AddMatchController.initialize();
         }catch (IOException e) {
             e.printStackTrace();
         }

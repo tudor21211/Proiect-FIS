@@ -20,12 +20,46 @@ import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.scene.control.Button;
 
-public class AddMatchController {
+public class AddMatchController extends ViewController{
     @FXML
     private Button CreateMatchButton;
 
     private Stage stage;
     private Scene scene;
+
+    @FXML
+    private ComboBox comboBoxT1;
+
+    @FXML
+    private ComboBox comboBoxT2;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+
+        String getTeamname = "Select (team_name) FROM teams";
+
+        System.out.println("asd");
+        try {
+            Statement statement = connectDB.createStatement();
+            ResultSet teams = statement.executeQuery(getTeamname);
+            //balanceField.setText(bal.getString("balance"));
+            while (teams.next()) {
+                String team = teams.getString("team_name");
+                System.out.println(team);
+                comboBoxT1.getItems().add(
+                        team
+                );
+                comboBoxT2.getItems().add(
+                        team
+                );
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void createMatchButtonOnAction(ActionEvent event)
     {
@@ -37,7 +71,6 @@ public class AddMatchController {
             stage.setScene(scene);
             stage.centerOnScreen();
             stage.show();
-
 
         } catch (IOException e) {
             e.printStackTrace();
