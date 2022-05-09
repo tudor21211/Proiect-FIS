@@ -173,13 +173,25 @@ private Scene scene;
             String parola = String.format(OUTPUT_FORMAT, "", bytesToHex(md5InBytes));
             String verifyLogin = "SELECT count(1) FROM user_account WHERE username ='" + userField.getText() + "' AND password ='" + parola + "'";
             String getBalance = "SELECT balance from user_account where username='"+userField.getText()+"'";
-            try {
+
+        try {
 
                 Statement statement = connectDB.createStatement();
                 ResultSet queryResult = statement.executeQuery(verifyLogin);
                 while (queryResult.next()) {
                     if (queryResult.getInt(1)==1){
                        // LoginApplication.changeScene2("main_view.fxml");
+                        try {
+                            Statement statement1 = connectDB.createStatement();
+                            ResultSet queryResult1 = statement1.executeQuery(getBalance);
+                            while(queryResult1.next()) {
+                                UserDetails.balance = queryResult1.getString("balance");
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        UserDetails.username = userField.getText();
+                        UserDetails.password=passField.getText();
                         try {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/main_view.fxml"));
                             Parent root = (Parent) loader.load();
