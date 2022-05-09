@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -28,9 +29,10 @@ public class AdminViewController {
     @FXML
     private Button logoutButton;
 
-    Stage stage;
+    private static Stage stage;
     Scene scene;
-
+    private double xOffset = 0;
+    private double yOffset = 0;
 
     public void addMatchOnAction(ActionEvent event)
     {
@@ -42,6 +44,23 @@ public class AdminViewController {
             stage = new Stage();
             stage.setScene(new Scene(root,600,400));
             stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage1 = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage1.getX() - event.getScreenX();
+                    yOffset = finalStage1.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage.setX(event.getScreenX() + xOffset);
+                    finalStage.setY(event.getScreenY() + yOffset);
+                }
+            });
             stage.show();
             //AddMatchController.initialize();
         }catch (IOException e) {

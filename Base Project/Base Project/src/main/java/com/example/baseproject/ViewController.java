@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,18 +32,43 @@ public class ViewController extends LoginController {
     public Label usernameField;
     @FXML
     public Label balanceField;
+    @FXML
+    public Button withdrawButton;
+    @FXML
+    public Button depositButton;
+    @FXML
+    public Button historyButton;
+
 
     private Stage stage;
     private Scene scene;
     private double xOffset = 0;
     private double yOffset = 0;
-private Accordion accordion;
+    private Accordion accordion;
 
+
+    private static final String IDLE_BUTTON_STYLE = "-fx-background-color:  #191C1C; -fx-text-fill: #FFFFFF; -fx-font-weight:bold; -fx-cursor:hand";
+    private static final String HOVERED_BUTTON_STYLE = "-fx-background-color:#353438; -fx-shadow-highlight-color:#141f1f; -fx-text-fill: #FFFFFF;-fx-font-weight:bold; -fx-cursor:hand";
+    private static final String IDLE_BUTTON_STYLE_Cancel = "-fx-background-color:   #FF0000; -fx-text-fill: #FFFFFF;-fx-font-weight:bold; -fx-cursor:hand";
+    private static final String HOVERED_BUTTON_STYLE_Cancel = "-fx-background-color:#ff4000; -fx-shadow-highlight-color:#ff4000; -fx-text-fill: #FFFFFF;-fx-font-weight:bold; -fx-cursor:hand";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        withdrawButton.setStyle(IDLE_BUTTON_STYLE);
+        withdrawButton.setOnMouseEntered(e -> withdrawButton.setStyle(HOVERED_BUTTON_STYLE));
+        withdrawButton.setOnMouseExited(e -> withdrawButton.setStyle(IDLE_BUTTON_STYLE));
+        depositButton.setStyle(IDLE_BUTTON_STYLE);
+        depositButton.setOnMouseEntered(e -> depositButton.setStyle(HOVERED_BUTTON_STYLE));
+        depositButton.setOnMouseExited(e -> depositButton.setStyle(IDLE_BUTTON_STYLE));
+        historyButton.setStyle(IDLE_BUTTON_STYLE);
+        historyButton.setOnMouseEntered(e -> historyButton.setStyle(HOVERED_BUTTON_STYLE));
+        historyButton.setOnMouseExited(e -> historyButton.setStyle(IDLE_BUTTON_STYLE));
+        logoutButton.setStyle(IDLE_BUTTON_STYLE_Cancel);
+        logoutButton.setOnMouseEntered(e -> logoutButton.setStyle(HOVERED_BUTTON_STYLE_Cancel));
+        logoutButton.setOnMouseExited(e -> logoutButton.setStyle(IDLE_BUTTON_STYLE_Cancel));
     }
+
 
 
         public void logoutButtonOnAction(ActionEvent event) {
@@ -104,6 +130,47 @@ private Accordion accordion;
 
 
     }
+
+    public void setBalanceField2(){
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+        //System.out.println(usernameField);
+        DepositController depositController = new DepositController();
+        String value = depositController.getValue(depositController.valueField);
+        String setBalance = "UPDATE user_account SET balance ='"+value+"' WHERE username='"+usernameField.getText()+"'";
+    }
+
+
+    public void depositButtonOnAction(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/deposit_view.fxml"));
+            Parent root = (Parent) loader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root,400,200));
+            stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage.getX() - event.getScreenX();
+                    yOffset = finalStage.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage1 = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage1.setX(event.getScreenX() + xOffset);
+                    finalStage1.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
 
