@@ -6,18 +6,30 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.AddMatchController">
    <top>
       <Label prefHeight="77.0" prefWidth="136.0" text="INSERT MATCH DETAILS" BorderPane.alignment="CENTER" />
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="426.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="startTime" layoutX="234.0" layoutY="267.0" promptText="Enter start time...." />
             <Button fx:id="CreateMatchButton" layoutX="463.0" layoutY="267.0" mnemonicParsing="false" onAction="#createMatchButtonOnAction" prefHeight="45.0" prefWidth="105.0" text="CREATE MATCH" />
             <ComboBox fx:id="comboBoxT1" layoutX="65.0" layoutY="39.0" prefWidth="150.0" promptText="SELECT TEAM 1" />
             <ComboBox fx:id="comboBoxT2" layoutX="366.0" layoutY="39.0" prefWidth="150.0" promptText="SELECT TEAM 2" />
+            <TextField fx:id="odds1" layoutX="66.0" layoutY="149.0" promptText="Enter odds..." />
+            <TextField fx:id="odds2" layoutX="367.0" layoutY="149.0" promptText="Enter odds..." />
+            <AnchorPane layoutX="400.0" layoutY="-86.0" prefHeight="152.0" prefWidth="204.0">
+               <children>
+                  <Button fx:id="cancelButton" layoutX="152.0" layoutY="7.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>

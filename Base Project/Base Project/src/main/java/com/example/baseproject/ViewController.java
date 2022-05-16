@@ -127,8 +127,6 @@ public class ViewController extends LoginController {
         }catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void setBalanceField2(){
@@ -170,7 +168,5 @@ public class ViewController extends LoginController {
             e.printStackTrace();
         }
     }
-
-
 }
 

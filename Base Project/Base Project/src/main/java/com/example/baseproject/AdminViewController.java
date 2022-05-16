@@ -34,6 +34,10 @@ public class AdminViewController {
     private double xOffset = 0;
     private double yOffset = 0;
 
+    @FXML
+    private Accordion accordion;
+
+
     public void addMatchOnAction(ActionEvent event)
     {
         try {
@@ -85,6 +89,33 @@ public class AdminViewController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void update()
+    {
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+        PreparedStatement psInsert = null;
+        String getMatch = "SELECT * FROM matches WHERE start<now()";
+
+        Accordion acc = new Accordion();
+        try{
+            Statement statement1 = connectDB.createStatement();
+            ResultSet queryResult1 = statement1.executeQuery(getMatch);
+            while(queryResult1.next()) {
+                System.out.println(queryResult1.getString("team1"));
+                System.out.println(queryResult1.getString("team2"));
+                TitledPane pane = new TitledPane();
+                pane.setText("match");
+                acc.getPanes().add(pane);
+            }
+            accordion=acc;
+            accordion.setVisible(true);
+
+        }catch(SQLException e)
+        {
+
         }
     }
 
