@@ -118,7 +118,6 @@ public class ViewController extends LoginController {
         try {
             Statement statement = connectDB.createStatement();
             ResultSet bal = statement.executeQuery(getBalance);
-            //balanceField.setText(bal.getString("balance"));
             while (bal.next()) {
                 String balance = bal.getString("balance");
                 balanceField.setText(balance);

@@ -20,6 +20,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.scene.control.Button;
+import javafx.stage.StageStyle;
 
 import static java.lang.Float.parseFloat;
 
@@ -92,20 +93,50 @@ public class AddMatchController extends ViewController{
             psInsert.setString(3,startTime.getText());
             psInsert.setString(4, String.valueOf(Float.parseFloat(odds1.getText())));
             psInsert.setString(5, String.valueOf(Float.parseFloat(odds2.getText())));
-            psInsert.execute(); // de ce nu executeQuery()?
+            psInsert.execute();
         }catch (SQLException e) {
             e.printStackTrace();
         }
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/baseproject/admin_view.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene (root);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
-            AdminViewController a = new AdminViewController();
+//            Parent root = FXMLLoader.load(getClass().getResource("/com/example/baseproject/admin_view.fxml"));
+//            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            scene = new Scene (root);
+//            stage.setScene(scene);
+//            stage.centerOnScreen();
+//            AdminViewController a = new AdminViewController();
+//            a.update();
+//            stage.show();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/admin_view.fxml"));
+            Parent root = (Parent) loader.load();
+            AdminViewController a = loader.getController();
             a.update();
+            Stage stage = (Stage) startTime.getScene().getWindow();
+            stage.close();
+            stage = new Stage();
+            stage.setScene(new Scene(root));
+            Stage finalStage = stage;
+            stage.initStyle(StageStyle.UNDECORATED);
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage.getX() - event.getScreenX();
+                    yOffset = finalStage.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage1 = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage1.setX(event.getScreenX() + xOffset);
+                    finalStage1.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+
+
 
         } catch (IOException e) {
             e.printStackTrace();

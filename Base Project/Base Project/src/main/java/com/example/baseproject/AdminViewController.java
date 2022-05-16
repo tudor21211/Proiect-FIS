@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -35,8 +36,13 @@ public class AdminViewController {
     private double yOffset = 0;
 
     @FXML
-    private Accordion accordion;
+    public Accordion accordion;
 
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    public Label testLabel;
 
     public void addMatchOnAction(ActionEvent event)
     {
@@ -108,14 +114,22 @@ public class AdminViewController {
                 System.out.println(queryResult1.getString("team2"));
                 TitledPane pane = new TitledPane();
                 pane.setText("match");
-                acc.getPanes().add(pane);
+                pane.setContent(new Button("CACAT"));
+                //pane.setExpanded(true);
+                pane.setCollapsible(true);
+                accordion.setExpandedPane(pane);
+                accordion.getPanes().add(pane);
+
             }
-            accordion=acc;
+        System.out.println(accordion.getPanes().size());
+           // System.out.println(accordion);
+            //accordion=acc;
+
             accordion.setVisible(true);
 
         }catch(SQLException e)
         {
-
+            e.printStackTrace();
         }
     }
 
