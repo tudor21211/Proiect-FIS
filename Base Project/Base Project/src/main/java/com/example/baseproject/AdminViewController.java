@@ -3,6 +3,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,17 +13,24 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.PasswordAuthentication;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 import javafx.scene.control.Button;
 import javafx.stage.StageStyle;
+import javafx.scene.image.Image;
+import org.controlsfx.control.spreadsheet.Grid;
 
 public class AdminViewController {
     @FXML
@@ -113,22 +122,39 @@ public class AdminViewController {
                 System.out.println(queryResult1.getString("team1"));
                 System.out.println(queryResult1.getString("team2"));
                 TitledPane pane = new TitledPane();
-                pane.setText("match");
-                pane.setContent(new Button("CACAT"));
-                //pane.setExpanded(true);
+                pane.setMinWidth(400);
+                pane.setText(queryResult1.getString("team1") + " vs "+queryResult1.getString("team2"));
+                //Image image  = new Image(getClass().getResourceAsStream("FAZE.png"));
+                Image image = new Image(new FileInputStream(queryResult1.getString("team2")+".jpg"));
+                ImageView imageView = new ImageView(image);
+                imageView.setFitHeight(100.0);
+                imageView.setFitWidth(100.0);
+                imageView.setX(320);
+                imageView.setY(0);
+                image = new Image(new FileInputStream(queryResult1.getString("team1")+".jpg"));
+                ImageView imageView2 = new ImageView(image);
+                imageView2.setFitHeight(100.0);
+                imageView2.setFitWidth(100.0);
+                imageView2.setX(20);
+                AnchorPane pula = new AnchorPane();
+                pula.getChildren().add(imageView);
+                pula.getChildren().add(imageView2);
+                pane.setContent(pula);
+
                 pane.setCollapsible(true);
                 accordion.setExpandedPane(pane);
                 accordion.getPanes().add(pane);
 
             }
         System.out.println(accordion.getPanes().size());
-           // System.out.println(accordion);
-            //accordion=acc;
+
 
             accordion.setVisible(true);
 
         }catch(SQLException e)
         {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
