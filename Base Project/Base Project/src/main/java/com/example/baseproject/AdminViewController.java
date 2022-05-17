@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.File;
@@ -125,6 +127,7 @@ public class AdminViewController {
                 pane.setMinWidth(400);
                 pane.setText(queryResult1.getString("team1") + " vs "+queryResult1.getString("team2"));
                 //Image image  = new Image(getClass().getResourceAsStream("FAZE.png"));
+
                 Image image = new Image(new FileInputStream(queryResult1.getString("team2")+".jpg"));
                 ImageView imageView = new ImageView(image);
                 imageView.setFitHeight(100.0);
@@ -136,10 +139,26 @@ public class AdminViewController {
                 imageView2.setFitHeight(100.0);
                 imageView2.setFitWidth(100.0);
                 imageView2.setX(20);
-                AnchorPane pula = new AnchorPane();
-                pula.getChildren().add(imageView);
-                pula.getChildren().add(imageView2);
-                pane.setContent(pula);
+
+                Label chance1 = new Label("Chances: "+queryResult1.getString("odd1"));
+                chance1.setLayoutX(140);
+                chance1.setLayoutY(50);
+                Label chance2 = new Label("Chances: "+queryResult1.getString("odd2"));
+                chance2.setLayoutX(240);
+                chance2.setLayoutY(50);
+
+                Label date = new Label("Start time: "+queryResult1.getString("start"));
+                date.setLayoutX(140);
+                date.setLayoutY(100);
+
+
+                AnchorPane anchorpane = new AnchorPane();
+                anchorpane.getChildren().add(imageView);
+                anchorpane.getChildren().add(imageView2);
+                anchorpane.getChildren().add(chance1);
+                anchorpane.getChildren().add(chance2);
+                anchorpane.getChildren().add(date);
+                pane.setContent(anchorpane);
 
                 pane.setCollapsible(true);
                 accordion.setExpandedPane(pane);
