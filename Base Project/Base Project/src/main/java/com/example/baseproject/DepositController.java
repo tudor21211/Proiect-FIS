@@ -66,7 +66,6 @@ private Label invalidCard;
                 String balance = bal.getString("balance");
                 intValue = Integer.parseInt(value);
                 intValue = intValue + Integer.parseInt(String.valueOf(balance));
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
