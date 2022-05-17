@@ -273,5 +273,70 @@ public class ViewController extends LoginController {
             e.printStackTrace();
         }
     }
+
+    public void withdrawButtonOnAction(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/withdraw_view.fxml"));
+            Parent root = (Parent) loader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root,400,200));
+            stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage.getX() - event.getScreenX();
+                    yOffset = finalStage.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage1 = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage1.setX(event.getScreenX() + xOffset);
+                    finalStage1.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void historyButtonOnAction (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/history_view.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) historyButton.getScene().getWindow();
+            stage.close();
+            HistoryViewController historyViewController = loader.getController();
+            historyViewController.update2();
+            stage = new Stage();
+            stage.setScene(new Scene(root,900,650));
+            stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage1 = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage1.getX() - event.getScreenX();
+                    yOffset = finalStage1.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage.setX(event.getScreenX() + xOffset);
+                    finalStage.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+            //AddMatchController.initialize();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

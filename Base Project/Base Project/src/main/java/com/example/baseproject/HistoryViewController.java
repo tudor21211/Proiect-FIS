@@ -1,120 +1,65 @@
 package com.example.baseproject;
+
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-import java.io.File;
+import javafx.stage.StageStyle;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.PasswordAuthentication;
-import java.net.URISyntaxException;
 import java.sql.*;
-import java.util.ResourceBundle;
-import java.net.URL;
-import javafx.scene.control.Button;
-import javafx.stage.StageStyle;
-import javafx.scene.image.Image;
-import org.controlsfx.control.spreadsheet.Grid;
 
-public class AdminViewController {
-    @FXML
-    private Button addMatchButton;
+public class HistoryViewController {
 
     @FXML
-    private Button logoutButton;
-
-    private static Stage stage;
-    Scene scene;
+    private Accordion accordion;
+    @FXML
+    private Button cancelButton;
     private double xOffset = 0;
     private double yOffset = 0;
 
-    @FXML
-    public Accordion accordion;
-
-    @FXML
-    private AnchorPane anchorPane;
-
-    @FXML
-    public Label testLabel;
-
-    public void addMatchOnAction(ActionEvent event)
-    {
+    public void cancelButtonOnAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/add_match_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/main_view.fxml"));
             Parent root = (Parent) loader.load();
-            Stage stage = (Stage) addMatchButton.getScene().getWindow();
+            Stage stage = (Stage) cancelButton.getScene().getWindow();
+            ViewController viewController = loader.getController();//de linia asta
+            viewController.setUsernameField(UserDetails.username);//si de linia asta e nevoie sa poti seta username-ul, teoretic fereastra noua nu inchide pe cea veche din cauza loader-ului dar fara el nu poti seta username-ul in scena noua
+            viewController.setBalanceField();
             stage.close();
+            viewController.update();
             stage = new Stage();
-            stage.setScene(new Scene(root,600,400));
+            stage.setScene(new Scene(root,1250,850));
             stage.initStyle(StageStyle.UNDECORATED);
-            Stage finalStage1 = stage;
-            root.setOnMousePressed(new EventHandler <MouseEvent> () {
-                @Override
-                public void handle(MouseEvent event) {
-                    xOffset = finalStage1.getX() - event.getScreenX();
-                    yOffset = finalStage1.getY() - event.getScreenY();
-                }
-            });
-
-            Stage finalStage = stage;
-            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
-                @Override
-                public void handle(MouseEvent event) {
-                    finalStage.setX(event.getScreenX() + xOffset);
-                    finalStage.setY(event.getScreenY() + yOffset);
-                }
-            });
             stage.show();
-            //AddMatchController.initialize();
         }catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("great success");
+
     }
 
-    public void logoutButtonOnAction(ActionEvent event)
-    {
-        try {
-
-            // LoginApplication.changeScene1("login.fxml");
-
-            Parent root = FXMLLoader.load(getClass().getResource("/com/example/baseproject/login.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene (root);
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.show();
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void update()
+    public void update2()
     {
         DBConnection connectNow = new DBConnection();
         Connection connectDB = connectNow.getConnection();
         PreparedStatement psInsert = null;
-        String getMatch = "SELECT * FROM matches WHERE start>now()";
+        String getMatch = "SELECT * FROM matches WHERE start<now()";
 
         Accordion acc = new Accordion();
         try{
@@ -165,7 +110,7 @@ public class AdminViewController {
                 accordion.getPanes().add(pane);
 
             }
-        System.out.println(accordion.getPanes().size());
+            System.out.println(accordion.getPanes().size());
 
             accordion.setVisible(true);
 
@@ -176,5 +121,4 @@ public class AdminViewController {
             e.printStackTrace();
         }
     }
-
 }
