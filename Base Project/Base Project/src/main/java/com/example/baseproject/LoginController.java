@@ -244,8 +244,11 @@ private Scene scene;
     {
         DBConnection connectNow = new DBConnection();
         Connection connectDB = connectNow.getConnection();
-
-        String verifyCode = "SELECT count(1) FROM admin_codes WHERE code ='"+codeField.getText()+"'";
+        byte[] md5InBytes = digest(codeField.getText().getBytes(UTF_8));
+        String cod = String.format(OUTPUT_FORMAT, "", bytesToHex(md5InBytes));
+        cod = cod.substring(cod.lastIndexOf(":")+1);
+        System.out.println(cod);
+        String verifyCode = "SELECT count(1) FROM admin_codes WHERE code ='"+cod+"'";
 
         try
         {
