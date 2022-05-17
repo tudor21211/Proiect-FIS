@@ -63,32 +63,31 @@ public class WithdrawController  {
             while (bal.next()) {
                 String balance = bal.getString("balance");
                 intValue = Integer.parseInt(value);
-                intValue = Integer.parseInt(String.valueOf(balance))-intValue;
-                if (intValue<0) invalid.setText("Insufficient Funds!");
+                intValue = Integer.parseInt(String.valueOf(balance)) - intValue;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        value = Integer.toString(intValue);
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
-            psInsert = connection.prepareStatement("UPDATE user_account SET balance =? WHERE username=?");
-            psInsert.setString(1, value);
-            psInsert.setString(2, username);
-            psInsert.execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            e.getCause();
+        if (intValue < 0) {invalid.setText("Insufficient Funds!!!");ok=0;
+            }
+        else {
+            value = Integer.toString(intValue);
+            try {
+                connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
+                psInsert = connection.prepareStatement("UPDATE user_account SET balance =? WHERE username=?");
+                psInsert.setString(1, value);
+                psInsert.setString(2, username);
+                psInsert.execute();
+                Stage st = (Stage) confirmWithdrawButton.getScene().getWindow();
+                st.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                e.getCause();
+            }
         }
     }
-
     public void confirmWithdrawButtonOnAction(ActionEvent event) throws IOException {
-        if (ok==1){
                     setBalanceField2(UserDetails.username);
-                    Stage st = (Stage) confirmWithdrawButton.getScene().getWindow();
-                    st.close();}
-        else invalid.setText("Insufficient funds");
     }
 
 
