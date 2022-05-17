@@ -230,7 +230,7 @@ public class ViewController extends LoginController {
 
                 String id_matches = queryResult1.getString("idmatches");
                 String team1 = queryResult1.getString("team1");
-                String _chance = queryResult1.getString("odd1");
+                String _chance1 = queryResult1.getString("odd1");
                 bet1.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
@@ -247,7 +247,7 @@ public class ViewController extends LoginController {
                                 psInsert.setString(2,id_matches);
                                 psInsert.setString(3,team1);
                                 psInsert.setString(4, amount1.getText());
-                                psInsert.setString(5, _chance);
+                                psInsert.setString(5, _chance1);
                                 psInsert.execute();
                             }catch (SQLException e) {
                                 e.printStackTrace();
@@ -263,13 +263,46 @@ public class ViewController extends LoginController {
                                 e.printStackTrace();
                             }
                         }
+                        balanceField.setText(UserDetails.balance);
 
                     }
                 });
+
+                String team2 = queryResult1.getString("team2");
+                String _chance2 = queryResult1.getString("odd2");
                 bet2.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        System.out.println("clickkk");
+                        PreparedStatement psInsert = null;
+                        if (Integer.parseInt(UserDetails.balance)<Integer.parseInt(amount2.getText()))
+                        {
+
+                        }
+                        else{
+                            try {
+                                Statement statement1 = connectDB.createStatement();
+                                psInsert = connectDB.prepareStatement("INSERT INTO bets (user,match_id,team,amount,rate) values (?,?,?,?,?);");
+                                psInsert.setString(1,UserDetails.username);
+                                psInsert.setString(2,id_matches);
+                                psInsert.setString(3,team2);
+                                psInsert.setString(4, amount2.getText());
+                                psInsert.setString(5, _chance2);
+                                psInsert.execute();
+                            }catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                            UserDetails.balance = Integer.toString(Integer.parseInt(UserDetails.balance) - Integer.parseInt(amount2.getText()));
+                            try{
+                                Statement statement = connectDB.createStatement();
+                                String setBalance = "UPDATE user_account SET balance ='"+Integer.parseInt(UserDetails.balance)+"' WHERE username='"+usernameField.getText()+"'";
+                                psInsert = connectDB.prepareStatement(setBalance);
+                                psInsert.execute();
+
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                            balanceField.setText(UserDetails.balance);
+                        }
                     }
                 });
 
