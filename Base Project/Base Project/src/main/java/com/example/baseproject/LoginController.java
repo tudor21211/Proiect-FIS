@@ -199,6 +199,7 @@ private Scene scene;
                             viewController.setUsernameField(userField.getText());//si de linia asta e nevoie sa poti seta username-ul, teoretic fereastra noua nu inchide pe cea veche din cauza loader-ului dar fara el nu poti seta username-ul in scena noua
                             viewController.setBalanceField();
                             Stage stage = (Stage) loginButton.getScene().getWindow();
+                            viewController.update();
                             stage.close();
                             stage = new Stage();
                             stage.setScene(new Scene(root,1250,850));

@@ -114,7 +114,7 @@ public class AdminViewController {
         DBConnection connectNow = new DBConnection();
         Connection connectDB = connectNow.getConnection();
         PreparedStatement psInsert = null;
-        String getMatch = "SELECT * FROM matches WHERE start<now()";
+        String getMatch = "SELECT * FROM matches WHERE start>now()";
 
         Accordion acc = new Accordion();
         try{

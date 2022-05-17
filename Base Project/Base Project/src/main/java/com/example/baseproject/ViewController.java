@@ -10,11 +10,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.PasswordAuthentication;
 import java.sql.*;
@@ -44,7 +47,7 @@ public class ViewController extends LoginController {
     private Scene scene;
     private double xOffset = 0;
     private double yOffset = 0;
-    private Accordion accordion;
+    public Accordion accordion;
 
 
     private static final String IDLE_BUTTON_STYLE = "-fx-background-color:  #191C1C; -fx-text-fill: #FFFFFF; -fx-font-weight:bold; -fx-cursor:hand";
@@ -164,6 +167,95 @@ public class ViewController extends LoginController {
             });
             stage.show();
         }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void update()
+    {
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+        PreparedStatement psInsert = null;
+        String getMatch = "SELECT * FROM matches WHERE start>now()";
+
+        Accordion acc = new Accordion();
+        try{
+            Statement statement1 = connectDB.createStatement();
+            ResultSet queryResult1 = statement1.executeQuery(getMatch);
+            while(queryResult1.next()) {
+                System.out.println(queryResult1.getString("team1"));
+                System.out.println(queryResult1.getString("team2"));
+                TitledPane pane = new TitledPane();
+                pane.setMinWidth(400);
+                pane.setText(queryResult1.getString("team1") + " vs "+queryResult1.getString("team2"));
+                //Image image  = new Image(getClass().getResourceAsStream("FAZE.png"));
+
+                Image image = new Image(new FileInputStream(queryResult1.getString("team2")+".jpg"));
+                ImageView imageView = new ImageView(image);
+                imageView.setFitHeight(100.0);
+                imageView.setFitWidth(100.0);
+                imageView.setX(320);
+                imageView.setY(0);
+                image = new Image(new FileInputStream(queryResult1.getString("team1")+".jpg"));
+                ImageView imageView2 = new ImageView(image);
+                imageView2.setFitHeight(100.0);
+                imageView2.setFitWidth(100.0);
+                imageView2.setX(20);
+
+                Label chance1 = new Label("Chances: "+queryResult1.getString("odd1"));
+                chance1.setLayoutX(140);
+                chance1.setLayoutY(50);
+                Label chance2 = new Label("Chances: "+queryResult1.getString("odd2"));
+                chance2.setLayoutX(240);
+                chance2.setLayoutY(50);
+
+                Label date = new Label("Start time: "+queryResult1.getString("start"));
+                date.setLayoutX(140);
+                date.setLayoutY(100);
+
+                Button bet1 = new Button("PLACE BET");
+                bet1.setLayoutX(20);
+                bet1.setLayoutY(120);
+                Button bet2 = new Button("PLACE BET");
+                bet2.setLayoutX(320);
+                bet2.setLayoutY(120);
+
+                bet1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        System.out.println("clickkk");
+                    }
+                });
+                bet2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        System.out.println("clickkk");
+                    }
+                });
+
+                AnchorPane anchorpane = new AnchorPane();
+                anchorpane.getChildren().add(imageView);
+                anchorpane.getChildren().add(imageView2);
+                anchorpane.getChildren().add(chance1);
+                anchorpane.getChildren().add(chance2);
+                anchorpane.getChildren().add(date);
+                anchorpane.getChildren().add(bet1);
+                anchorpane.getChildren().add(bet2);
+                pane.setContent(anchorpane);
+
+                pane.setCollapsible(true);
+                accordion.setExpandedPane(pane);
+                accordion.getPanes().add(pane);
+
+            }
+            System.out.println(accordion.getPanes().size());
+
+
+            accordion.setVisible(true);
+
+        }catch(SQLException e)
+        {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
