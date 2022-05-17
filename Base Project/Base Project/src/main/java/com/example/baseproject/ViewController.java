@@ -167,5 +167,35 @@ public class ViewController extends LoginController {
             e.printStackTrace();
         }
     }
+
+    public void withdrawButtonOnAction(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/withdraw_view.fxml"));
+            Parent root = (Parent) loader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root,400,200));
+            stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage.getX() - event.getScreenX();
+                    yOffset = finalStage.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage1 = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage1.setX(event.getScreenX() + xOffset);
+                    finalStage1.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
