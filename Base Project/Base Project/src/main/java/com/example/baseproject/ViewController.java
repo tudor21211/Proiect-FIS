@@ -215,6 +215,18 @@ public class ViewController extends LoginController {
                 Button bet1 = new Button("PLACE BET");
                 bet1.setLayoutX(20);
                 bet1.setLayoutY(120);
+
+                TextField amount1 = new TextField();
+                amount1.setPromptText("Amount...");
+                amount1.setLayoutX(20);
+                amount1.setLayoutY(150);
+
+                TextField amount2 = new TextField();
+                amount2.setPromptText("Amount...");
+                amount2.setLayoutX(320);
+                amount2.setLayoutY(150);
+
+
                 Button bet2 = new Button("PLACE BET");
                 bet2.setLayoutX(320);
                 bet2.setLayoutY(120);
@@ -240,6 +252,8 @@ public class ViewController extends LoginController {
                 anchorpane.getChildren().add(date);
                 anchorpane.getChildren().add(bet1);
                 anchorpane.getChildren().add(bet2);
+                anchorpane.getChildren().add(amount1);
+                anchorpane.getChildren().add(amount2);
                 pane.setContent(anchorpane);
 
                 pane.setCollapsible(true);
