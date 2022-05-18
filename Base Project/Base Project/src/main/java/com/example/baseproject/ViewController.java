@@ -345,7 +345,11 @@ public class ViewController extends LoginController {
                 {
                     if(queryResult2.getString("user").equals(UserDetails.username))
                     {
-                        
+                        if(queryResult1.getString("winner").equals(queryResult2.getString("team")))
+                        {
+                            //update database
+                        }
+                        //delete this bet
                     }
                 }
             }
