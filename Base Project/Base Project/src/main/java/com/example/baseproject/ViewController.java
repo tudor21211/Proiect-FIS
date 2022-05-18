@@ -21,8 +21,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.PasswordAuthentication;
 import java.sql.*;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.net.URL;
+import java.util.random.*;
 
 
 public class ViewController extends LoginController {
@@ -278,7 +280,6 @@ public class ViewController extends LoginController {
                         PreparedStatement psInsert = null;
                         if (Integer.parseInt(UserDetails.balance)<Integer.parseInt(amount2.getText()))
                         {
-
                         }
                         else{
                             try {
@@ -342,30 +343,67 @@ public class ViewController extends LoginController {
             while (queryResult1.next())
             {
                 Statement statement2 = connectDB.createStatement();
+                String rez = queryResult1.getString("result");
+                if (rez.equals("asd"))
+                {
+                    int scor1=0;
+                    int scor2=0;
+                    Random rand = new Random();
+                    Random rand2 = new Random();
+                    while ((scor1!=16) && (scor2!=16))
+                    {
+                        System.out.println(scor1 + "-" + scor2);
+                        scor1 = rand.nextInt(17);
+                        scor2 = rand2.nextInt(17);
+                    }
+                    String str = Integer.toString(scor1)+"-"+Integer.toString(scor2);
+                    System.out.println(str);
+                    try {
+                        psInsert = connectDB.prepareStatement("UPDATE matches SET result ='"+str+"' WHERE idmatches='"+queryResult1.getString("idmatches")+"'");
+                        psInsert.execute();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                
                 ResultSet queryResult2 = statement2.executeQuery("SELECT * FROM bets WHERE match_id="+queryResult1.getString("idmatches"));
                 while(queryResult2.next())
                 {
                     if(queryResult2.getString("user").equals(UserDetails.username))
                     {
-                        //if(queryResult1.getString("winner").equals(queryResult2.getString("team")))
-                        //{
-//                            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
-//                            psInsert = connection.prepareStatement("UPDATE user_account SET balance =? WHERE username=?");
-//                            String s = Integer.toString(Integer.valueOf(UserDetails.balance) + Integer.valueOf(queryResult2.getString("rate")) * Integer.valueOf(queryResult2.getString("amount")));
-//                            psInsert.setString(1,s);
-//                            psInsert.setString(2, UserDetails.username);
-//                            psInsert.execute();
-//                            UserDetails.balance = s;
-//                            balanceField.setText(s);
-   //                     }
-                        //delete this bet
+                        System.out.println(queryResult1.getString("result"));
+                        String score = queryResult1.getString("result");
+                        int index = score.indexOf("-");
+                        int score_team1 = Integer.parseInt(score.substring(0,index));
+                        String winner_team;
+                        if (score_team1==16) {winner_team=queryResult1.getString("team1");}
+                        else {winner_team=queryResult1.getString("team2");}
+                        if(winner_team.equals(queryResult2.getString("team")))
+                        {
+                            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
+                            psInsert = connection.prepareStatement("UPDATE user_account SET balance =? WHERE username=?");
+                            String s = Double.toString(Double.valueOf(UserDetails.balance) + Double.valueOf(queryResult2.getString("rate")) * Double.valueOf(queryResult2.getString("amount")));
+                            psInsert.setString(1,s);
+                            psInsert.setString(2, UserDetails.username);
+                            psInsert.execute();
+                            UserDetails.balance = s;
+                            balanceField.setText(s);
+                        }
+                        connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
+                        //psInsert = connection.prepareStatement("SET SQL_SAFE_UPDATES = 0; DELETE FROM bets where idbets="+queryResult2.getString("idbets") +";");
+                        Statement sInsert;
+                        sInsert = connection.createStatement();
+                        sInsert.addBatch("SET SQL_SAFE_UPDATES = 0");
+                        sInsert.addBatch("DELETE FROM bets where idbets="+queryResult2.getString("idbets"));
+                        sInsert.executeBatch();
+
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public void withdrawButtonOnAction(ActionEvent event) throws IOException {
