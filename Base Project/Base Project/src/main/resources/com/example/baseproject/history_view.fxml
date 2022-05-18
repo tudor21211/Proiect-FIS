@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: #1E2020; -fx-border-color: #204a4c; -fx-border-width: 2.5px;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.HistoryViewController">
+   <children>
+      <Button fx:id="cancelButton" layoutX="834.0" layoutY="7.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="27.0" prefWidth="58.0" style="-fx-background-color: #ff0000; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancel" textFill="WHITE">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Accordion fx:id="accordion" layoutX="262.0" layoutY="67.0" prefHeight="16.0" prefWidth="21.0" />
+   </children>
+</AnchorPane>

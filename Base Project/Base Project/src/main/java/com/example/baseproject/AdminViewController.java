@@ -40,7 +40,8 @@ public class AdminViewController {
 
     @FXML
     private Button logoutButton;
-
+    @FXML
+    private Button historyButton;
     private static Stage stage;
     Scene scene;
     private double xOffset = 0;
@@ -167,13 +168,47 @@ public class AdminViewController {
             }
         System.out.println(accordion.getPanes().size());
 
-
             accordion.setVisible(true);
 
         }catch(SQLException e)
         {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void historyButtonOnAction (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/history_view_admin.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) historyButton.getScene().getWindow();
+            stage.close();
+            HistoryViewAdminController historyViewAdminController = loader.getController();
+            historyViewAdminController.updateAdmin();
+            stage = new Stage();
+            stage.setScene(new Scene(root,900,650));
+            stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage1 = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage1.getX() - event.getScreenX();
+                    yOffset = finalStage1.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage.setX(event.getScreenX() + xOffset);
+                    finalStage.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+            //AddMatchController.initialize();
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
