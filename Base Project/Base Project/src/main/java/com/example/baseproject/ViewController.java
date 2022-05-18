@@ -174,9 +174,11 @@ public class ViewController extends LoginController {
     {
         DBConnection connectNow = new DBConnection();
         Connection connectDB = connectNow.getConnection();
+        Connection connection = null;
         PreparedStatement psInsert = null;
         String getMatch = "SELECT * FROM matches WHERE start>now()";
         Accordion acc = new Accordion();
+        //PreparedStatement psInsert = null;
         try{
             Statement statement1 = connectDB.createStatement();
             ResultSet queryResult1 = statement1.executeQuery(getMatch);
@@ -345,10 +347,17 @@ public class ViewController extends LoginController {
                 {
                     if(queryResult2.getString("user").equals(UserDetails.username))
                     {
-                        if(queryResult1.getString("winner").equals(queryResult2.getString("team")))
-                        {
-                            //update database
-                        }
+                        //if(queryResult1.getString("winner").equals(queryResult2.getString("team")))
+                        //{
+//                            connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
+//                            psInsert = connection.prepareStatement("UPDATE user_account SET balance =? WHERE username=?");
+//                            String s = Integer.toString(Integer.valueOf(UserDetails.balance) + Integer.valueOf(queryResult2.getString("rate")) * Integer.valueOf(queryResult2.getString("amount")));
+//                            psInsert.setString(1,s);
+//                            psInsert.setString(2, UserDetails.username);
+//                            psInsert.execute();
+//                            UserDetails.balance = s;
+//                            balanceField.setText(s);
+   //                     }
                         //delete this bet
                     }
                 }
