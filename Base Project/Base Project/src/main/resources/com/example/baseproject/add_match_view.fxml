@@ -8,28 +8,31 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.AddMatchController">
-   <top>
-      <Label prefHeight="77.0" prefWidth="136.0" text="INSERT MATCH DETAILS" BorderPane.alignment="CENTER" />
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1E2020;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.AddMatchController">
    <center>
-      <AnchorPane prefHeight="426.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="398.0" prefWidth="867.0" style="-fx-border-color: #204a4c; -fx-border-width: 2.5px;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="startTime" layoutX="234.0" layoutY="267.0" promptText="Enter start time...." />
-            <Button fx:id="CreateMatchButton" layoutX="463.0" layoutY="267.0" mnemonicParsing="false" onAction="#createMatchButtonOnAction" prefHeight="45.0" prefWidth="105.0" text="CREATE MATCH" />
-            <ComboBox fx:id="comboBoxT1" layoutX="65.0" layoutY="39.0" prefWidth="150.0" promptText="SELECT TEAM 1" />
-            <ComboBox fx:id="comboBoxT2" layoutX="366.0" layoutY="39.0" prefWidth="150.0" promptText="SELECT TEAM 2" />
-            <TextField fx:id="odds1" layoutX="66.0" layoutY="149.0" promptText="Enter odds..." />
-            <TextField fx:id="odds2" layoutX="367.0" layoutY="149.0" promptText="Enter odds..." />
-            <AnchorPane layoutX="400.0" layoutY="-86.0" prefHeight="152.0" prefWidth="204.0">
-               <children>
-                  <Button fx:id="cancelButton" layoutX="152.0" layoutY="7.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" text="Cancel">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
+            <TextField fx:id="startTime" layoutX="217.0" layoutY="298.0" promptText="Enter start time...." style="-fx-background-color: white;" />
+            <Button fx:id="CreateMatchButton" layoutX="478.0" layoutY="345.0" mnemonicParsing="false" onAction="#createMatchButtonOnAction" prefHeight="40.0" prefWidth="111.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-cursor: hand;" text="CREATE MATCH" />
+            <ComboBox fx:id="comboBoxT1" layoutX="64.0" layoutY="88.0" prefWidth="150.0" promptText="SELECT TEAM 1" style="-fx-background-color: white; -fx-prompt-text-fill: white; -fx-cursor: hand;" />
+            <ComboBox fx:id="comboBoxT2" layoutX="365.0" layoutY="88.0" prefWidth="150.0" promptText="SELECT TEAM 2" style="-fx-background-color: white; -fx-cursor: hand;" />
+            <TextField fx:id="odds1" layoutX="63.0" layoutY="200.0" promptText="Enter odds..." style="-fx-background-color: white;" />
+            <TextField fx:id="odds2" layoutX="364.0" layoutY="200.0" promptText="Enter odds..." style="-fx-background-color: white;" />
+            <Label layoutX="211.0" layoutY="-12.0" prefHeight="81.0" prefWidth="178.0" style="-fx-font-weight: bold;" text="INSERT MATCH DETAILS" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="cancelButton" layoutX="534.0" layoutY="7.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="29.0" prefWidth="63.0" style="-fx-background-color: red; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="invalidLabel" layoutX="198.0" layoutY="350.0" prefHeight="29.0" prefWidth="203.0" style="-fx-font-weight: bold;" textFill="RED">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>

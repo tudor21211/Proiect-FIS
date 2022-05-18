@@ -104,7 +104,7 @@ public class HistoryViewController {
                 anchorpane.getChildren().add(chance2);
                 anchorpane.getChildren().add(date);
                 pane.setContent(anchorpane);
-
+                pane.setExpanded(false);
                 pane.setCollapsible(true);
                 accordion.setExpandedPane(pane);
                 accordion.getPanes().add(pane);
