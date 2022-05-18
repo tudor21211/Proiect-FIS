@@ -332,6 +332,27 @@ public class ViewController extends LoginController {
             e.printStackTrace();
         }
 
+        getMatch = "SELECT * FROM matches WHERE start<now()";
+        try
+        {
+            Statement statement1 = connectDB.createStatement();
+            ResultSet queryResult1 = statement1.executeQuery(getMatch);
+            while (queryResult1.next())
+            {
+                Statement statement2 = connectDB.createStatement();
+                ResultSet queryResult2 = statement2.executeQuery("SELECT * FROM bets WHERE match_id="+queryResult1.getString("idmatches"));
+                while(queryResult2.next())
+                {
+                    if(queryResult2.getString("user").equals(UserDetails.username))
+                    {
+                        
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
