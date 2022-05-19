@@ -88,6 +88,7 @@ public class WithdrawController  {
     }
     public void confirmWithdrawButtonOnAction(ActionEvent event) throws IOException {
                     setBalanceField2(UserDetails.username);
+
     }
 
 

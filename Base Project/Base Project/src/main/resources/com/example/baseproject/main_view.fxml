@@ -37,6 +37,7 @@
             <Label fx:id="balanceLabel" layoutX="949.0" layoutY="48.0" prefHeight="30.0" prefWidth="81.0" style="-fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 20;" text="balance:" />
             <Label fx:id="balanceField" layoutX="1029.0" layoutY="48.0" prefHeight="30.0" prefWidth="110.0" style="-fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 20;" text="0" />
             <Label fx:id="balanceLabel1" layoutX="949.0" layoutY="23.0" prefHeight="30.0" prefWidth="52.0" style="-fx-text-fill: #ffffff; -fx-font-weight: bold; -fx-font-size: 20;" text="user:" />
+            <Button fx:id="reloadButton" layoutX="1207.0" layoutY="50.0" mnemonicParsing="false" onAction="#reloadButtonOnAction" prefHeight="27.0" prefWidth="29.0" style="-fx-background-radius: 15px; -fx-background-color: yellow; -fx-font-weight: bold;" text="R" />
          </children>
       </AnchorPane>
    </top>

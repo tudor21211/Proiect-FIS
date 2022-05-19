@@ -45,6 +45,8 @@ public class ViewController extends LoginController {
     public Button historyButton;
     @FXML
     public Button resultsButton;
+    @FXML
+    public Button reloadButton;
 
     private Stage stage;
     private Scene scene;
@@ -493,6 +495,42 @@ public class ViewController extends LoginController {
                 }
             }
         }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void reloadButtonOnAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/baseproject/main_view.fxml"));
+            Parent root = (Parent) loader.load();
+            Stage stage = (Stage) reloadButton.getScene().getWindow();
+            ViewController viewController = loader.getController();
+            viewController.setUsernameField(UserDetails.username);
+            viewController.setBalanceField();
+            stage.close();
+            viewController.update();
+            stage = new Stage();
+            stage.setScene(new Scene(root, 1250, 850));
+            stage.initStyle(StageStyle.UNDECORATED);
+            Stage finalStage1 = stage;
+            root.setOnMousePressed(new EventHandler <MouseEvent> () {
+                @Override
+                public void handle(MouseEvent event) {
+                    xOffset = finalStage1.getX() - event.getScreenX();
+                    yOffset = finalStage1.getY() - event.getScreenY();
+                }
+            });
+
+            Stage finalStage = stage;
+            root.setOnMouseDragged(new EventHandler < MouseEvent > () {
+                @Override
+                public void handle(MouseEvent event) {
+                    finalStage.setX(event.getScreenX() + xOffset);
+                    finalStage.setY(event.getScreenY() + yOffset);
+                }
+            });
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
