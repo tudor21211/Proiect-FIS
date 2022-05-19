@@ -43,7 +43,8 @@ public class ViewController extends LoginController {
     public Button depositButton;
     @FXML
     public Button historyButton;
-
+    @FXML
+    public Button resultsButton;
 
     private Stage stage;
     private Scene scene;
@@ -239,7 +240,7 @@ public class ViewController extends LoginController {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         PreparedStatement psInsert = null;
-                        if (Integer.parseInt(UserDetails.balance)<Integer.parseInt(amount1.getText()))
+                        if (Double.parseDouble(UserDetails.balance)<Double.parseDouble(amount1.getText()))
                         {
 
                         }
@@ -256,10 +257,10 @@ public class ViewController extends LoginController {
                             }catch (SQLException e) {
                                 e.printStackTrace();
                             }
-                            UserDetails.balance = Integer.toString(Integer.parseInt(UserDetails.balance) - Integer.parseInt(amount1.getText()));
+                            UserDetails.balance = Double.toString(Double.parseDouble(UserDetails.balance) - Double.parseDouble(amount1.getText()));
                             try{
                                 Statement statement = connectDB.createStatement();
-                                String setBalance = "UPDATE user_account SET balance ='"+Integer.parseInt(UserDetails.balance)+"' WHERE username='"+usernameField.getText()+"'";
+                                String setBalance = "UPDATE user_account SET balance ='"+Double.parseDouble(UserDetails.balance)+"' WHERE username='"+usernameField.getText()+"'";
                                 psInsert = connectDB.prepareStatement(setBalance);
                                 psInsert.execute();
 
@@ -278,7 +279,7 @@ public class ViewController extends LoginController {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         PreparedStatement psInsert = null;
-                        if (Integer.parseInt(UserDetails.balance)<Integer.parseInt(amount2.getText()))
+                        if (Double.parseDouble(UserDetails.balance)<Double.parseDouble(amount2.getText()))
                         {
                         }
                         else{
@@ -294,10 +295,10 @@ public class ViewController extends LoginController {
                             }catch (SQLException e) {
                                 e.printStackTrace();
                             }
-                            UserDetails.balance = Integer.toString(Integer.parseInt(UserDetails.balance) - Integer.parseInt(amount2.getText()));
+                            UserDetails.balance = Double.toString(Double.parseDouble(UserDetails.balance) - Double.parseDouble(amount2.getText()));
                             try{
                                 Statement statement = connectDB.createStatement();
-                                String setBalance = "UPDATE user_account SET balance ='"+Integer.parseInt(UserDetails.balance)+"' WHERE username='"+usernameField.getText()+"'";
+                                String setBalance = "UPDATE user_account SET balance ='"+Double.parseDouble(UserDetails.balance)+"' WHERE username='"+usernameField.getText()+"'";
                                 psInsert = connectDB.prepareStatement(setBalance);
                                 psInsert.execute();
 
@@ -344,7 +345,7 @@ public class ViewController extends LoginController {
             {
                 Statement statement2 = connectDB.createStatement();
                 String rez = queryResult1.getString("result");
-                if (rez.equals("asd"))
+                if (rez==null)
                 {
                     int scor1=0;
                     int scor2=0;
@@ -356,7 +357,7 @@ public class ViewController extends LoginController {
                         scor1 = rand.nextInt(17);
                         scor2 = rand2.nextInt(17);
                     }
-                    String str = Integer.toString(scor1)+"-"+Integer.toString(scor2);
+                    String str = Double.toString(scor1)+"-"+Double.toString(scor2);
                     System.out.println(str);
                     try {
                         psInsert = connectDB.prepareStatement("UPDATE matches SET result ='"+str+"' WHERE idmatches='"+queryResult1.getString("idmatches")+"'");
@@ -374,8 +375,10 @@ public class ViewController extends LoginController {
                     {
                         System.out.println(queryResult1.getString("result"));
                         String score = queryResult1.getString("result");
+                        if (score==null) System.out.println(score); else {
+                        assert score != null;
                         int index = score.indexOf("-");
-                        int score_team1 = Integer.parseInt(score.substring(0,index));
+                        double score_team1 = Double.parseDouble(score.substring(0,index));
                         String winner_team;
                         if (score_team1==16) {winner_team=queryResult1.getString("team1");}
                         else {winner_team=queryResult1.getString("team2");}
@@ -400,7 +403,7 @@ public class ViewController extends LoginController {
 
                     }
                 }
-            }
+            }}
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -470,5 +473,27 @@ public class ViewController extends LoginController {
             e.printStackTrace();
         }
     }
-}
 
+    public void resultsButtonOnAction(ActionEvent event){
+        DBConnection connectNow = new DBConnection();
+        Connection connectDB = connectNow.getConnection();
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        String getMatch = "SELECT * FROM matches WHERE start<now()";
+        try {
+            Statement statement1 = connectDB.createStatement();
+            ResultSet queryResult = statement1.executeQuery(getMatch);
+            while (queryResult.next()) {
+                try {
+                    System.out.println(queryResult.getString("idmatches"));
+                    psInsert = connectDB.prepareStatement("UPDATE matches SET start ='2001-01-01' WHERE idmatches=1+"+queryResult.getString("idmatches"));
+                    psInsert.execute();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

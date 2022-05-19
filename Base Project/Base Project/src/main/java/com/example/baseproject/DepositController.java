@@ -58,20 +58,20 @@ private Label invalidCard;
         String value = depositController.getValue(valueField);
         String getBalance = "SELECT balance from user_account where username='" + username + "'";
         ResultSet bal = null;
-        int intValue = 0;
+        double intValue = 0;
         try {
             Statement statement = connectDB.createStatement();
             bal = statement.executeQuery(getBalance);
             while (bal.next()) {
                 String balance = bal.getString("balance");
-                intValue = Integer.parseInt(value);
-                intValue = intValue + Integer.parseInt(String.valueOf(balance));
+                intValue = Double.parseDouble(value);
+                intValue = intValue + Double.parseDouble(String.valueOf(balance));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        value = Integer.toString(intValue);
+        value = Double.toString(intValue);
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost/usersdb", "root", "root");
             psInsert = connection.prepareStatement("UPDATE user_account SET balance =? WHERE username=?");
