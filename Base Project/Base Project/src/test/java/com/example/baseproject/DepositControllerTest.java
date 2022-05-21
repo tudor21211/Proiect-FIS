@@ -12,6 +12,9 @@ import org.w3c.dom.Text;
 import org.testfx.api.FxRobot;
 import static org.hamcrest.CoreMatchers.*;
 import org.junit.Before;
+
+import java.awt.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assert.*;
 
@@ -25,12 +28,7 @@ class DepositControllerTest {
     }
 
     @Test
-    public void  setBalanceField2(FxRobot robot) {
-        Label label = (Label) GuiTest.find("#label");
+    public void  setBalanceField2() {
 
-        robot.clickOn("#valueField");
-        robot.write("C'est un test!");
-        robot.clickOn("#applyButton");
-        MatcherAssert.assertThat(label.getText(), is("C'est un test!"));
     }
 }

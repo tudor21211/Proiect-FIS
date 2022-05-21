@@ -48,7 +48,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="1256.0" snapToPixel="false">
                      <children>
-                        <Accordion fx:id="accordion" layoutX="253.0" layoutY="196.0" />
+                        <Accordion fx:id="accordion" layoutX="389.0" layoutY="91.0" />
                         <Button fx:id="resultsButton" layoutX="1001.0" layoutY="491.0" mnemonicParsing="false" onAction="#resultsButtonOnAction" prefHeight="60.0" prefWidth="209.0" style="-fx-background-color: #191C1C; -fx-font-weight: bold; -fx-cursor: hand;" text="Show result (for demo only)" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
