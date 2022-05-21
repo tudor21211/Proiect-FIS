@@ -18,6 +18,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
@@ -66,7 +67,7 @@ public class ViewController extends LoginController {
     private static final String HOVERED_BUTTON_STYLE = "-fx-background-color:#353438; -fx-shadow-highlight-color:#141f1f; -fx-text-fill: #FFFFFF;-fx-font-weight:bold; -fx-cursor:hand";
     private static final String IDLE_BUTTON_STYLE_Cancel = "-fx-background-color:   #FF0000; -fx-text-fill: #FFFFFF;-fx-font-weight:bold; -fx-cursor:hand";
     private static final String HOVERED_BUTTON_STYLE_Cancel = "-fx-background-color:#ff4000; -fx-shadow-highlight-color:#ff4000; -fx-text-fill: #FFFFFF;-fx-font-weight:bold; -fx-cursor:hand";
-    private static final String LABEL = "-fx-font-weight:bold;-fx-text-fill:BLACK";
+    private static final String LABEL = "-fx-font-weight:bold;-fx-text-fill:WHITE";
     private static final String TITLED_PANE = "-fx-background-color:GREEN;-fx-text-fill:BLUE;-fx-font-width:bold";
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -202,54 +203,56 @@ public class ViewController extends LoginController {
                 TitledPane pane = new TitledPane();
                 pane.setMinWidth(400);
                 pane.setText(queryResult1.getString("team1") + " vs "+queryResult1.getString("team2"));
-                pane.setStyle("-fx-text-fill:BLACK;");
+                pane.setStyle("-fx-text-fill:BLACK;-fx-border-color:#365c5d");
                 //Image image  = new Image(getClass().getResourceAsStream("FAZE.png"));
                 Image image = new Image(new FileInputStream(queryResult1.getString("team2")+".jpg"));
+                String getPlayers2 = queryResult1.getString("team2");
                 ImageView imageView = new ImageView(image);
                 imageView.setFitHeight(100.0);
                 imageView.setFitWidth(100.0);
                 imageView.setX(400);
-                imageView.setY(15);
+                imageView.setY(25);
+
                 image = new Image(new FileInputStream(queryResult1.getString("team1")+".jpg"));
                 ImageView imageView2 = new ImageView(image);
                 imageView2.setFitHeight(100.0);
                 imageView2.setFitWidth(100.0);
                 imageView2.setX(20);
-                imageView2.setY(15);
+                imageView2.setY(25);
                 Label chance1 = new Label("Chances: "+queryResult1.getString("odd1"));
-                chance1.setLayoutX(140);
-                chance1.setLayoutY(50);
+                chance1.setLayoutX(30);
+                chance1.setLayoutY(5);
                 chance1.setStyle(LABEL);
                 Label chance2 = new Label("Chances: "+queryResult1.getString("odd2"));
-                chance2.setLayoutX(310);
-                chance2.setLayoutY(50);
+                chance2.setLayoutX(410);
+                chance2.setLayoutY(5);
                 chance2.setStyle(LABEL);
                 Label date = new Label("Start time: "+queryResult1.getString("start"));
-                date.setLayoutX(180);
+                date.setLayoutX(170);
                 date.setLayoutY(100);
                 date.setStyle("-fx-text-fill:RED;-fx-font-weight:bold");
 
                 Button bet1 = new Button("PLACE BET");
                 bet1.setLayoutX(30);
-                bet1.setLayoutY(120);
+                bet1.setLayoutY(130);
                 bet1.setTextFill(Color.WHITE);
                 bet1.setStyle(IDLE_BUTTON_STYLE);
 
                 TextField amount1 = new TextField();
                 amount1.setPromptText("Amount...");
                 amount1.setLayoutX(30);
-                amount1.setLayoutY(150);
+                amount1.setLayoutY(160);
                 amount1.setPrefWidth(80);
 
                 TextField amount2 = new TextField();
                 amount2.setPromptText("Amount...");
                 amount2.setLayoutX(410);
-                amount2.setLayoutY(150);
+                amount2.setLayoutY(160);
                 amount2.setPrefWidth(80);
 
                 Button bet2 = new Button("PLACE BET");
                 bet2.setLayoutX(410);
-                bet2.setLayoutY(120);
+                bet2.setLayoutY(130);
                 bet2.setStyle(IDLE_BUTTON_STYLE);
                 String id_matches = queryResult1.getString("idmatches");
                 String team1 = queryResult1.getString("team1");

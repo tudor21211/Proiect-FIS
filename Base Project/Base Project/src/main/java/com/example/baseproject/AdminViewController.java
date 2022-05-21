@@ -12,10 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -142,15 +140,19 @@ public class AdminViewController {
                 imageView2.setX(20);
 
                 Label chance1 = new Label("Chances: "+queryResult1.getString("odd1"));
-                chance1.setLayoutX(140);
+                chance1.setLayoutX(121);
                 chance1.setLayoutY(50);
+                chance1.setStyle("-fx-text-fill:BLACK;-fx-font-weight:bold");
                 Label chance2 = new Label("Chances: "+queryResult1.getString("odd2"));
                 chance2.setLayoutX(240);
                 chance2.setLayoutY(50);
+                chance2.setStyle("-fx-text-fill:BLACK;-fx-font-weight:bold");
 
                 Label date = new Label("Start time: "+queryResult1.getString("start"));
-                date.setLayoutX(140);
+                date.setLayoutX(130);
                 date.setLayoutY(100);
+
+                date.setStyle("-fx-text-fill:RED;-fx-font-weight:bold");
 
 
                 AnchorPane anchorpane = new AnchorPane();
@@ -159,6 +161,7 @@ public class AdminViewController {
                 anchorpane.getChildren().add(chance1);
                 anchorpane.getChildren().add(chance2);
                 anchorpane.getChildren().add(date);
+                anchorpane.setBackground(new Background(new BackgroundFill(Color.rgb(32,74,76), new CornerRadii(1), new Insets(0.0, 0.0, 0.0, 0.0))));
                 pane.setContent(anchorpane);
 
                 pane.setCollapsible(true);

@@ -35,11 +35,11 @@
         </AnchorPane>
     </top>
     <center>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #365c5d;" BorderPane.alignment="CENTER">
             <children>
                 <ScrollPane layoutX="438.0" layoutY="65.0" prefHeight="579.0" prefWidth="891.0" AnchorPane.bottomAnchor="107.40593653741462" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <content>
-                        <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="1256.0" snapToPixel="false">
+                        <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="1256.0" snapToPixel="false" style="-fx-background-color: #365c5d;">
                             <children>
                                 <Accordion fx:id="accordion" layoutX="361.0" layoutY="65.0" prefHeight="26.0" prefWidth="283.0" />
                         <Label layoutX="213.0" layoutY="46.0" prefHeight="19.0" prefWidth="131.0" />

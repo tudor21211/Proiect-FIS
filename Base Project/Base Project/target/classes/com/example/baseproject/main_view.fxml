@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850" prefWidth="1250" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.ViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850" prefWidth="1250" style="-fx-background-color: #365c5d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.ViewController">
    <bottom>
       <AnchorPane prefHeight="30.0" prefWidth="1251.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,9 +44,9 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane layoutX="438.0" layoutY="65.0" prefHeight="579.0" prefWidth="891.0" AnchorPane.bottomAnchor="107.40593653741462" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane layoutX="438.0" layoutY="65.0" prefHeight="579.0" prefWidth="891.0" style="-fx-background-color: #365c5d;" AnchorPane.bottomAnchor="107.40593653741462" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="1256.0" snapToPixel="false">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="590.0" prefWidth="1257.0" snapToPixel="false" style="-fx-background-color: #365c5d; -fx-border-width: 3px;">
                      <children>
                         <Accordion fx:id="accordion" layoutX="389.0" layoutY="91.0" />
                         <Button fx:id="resultsButton" layoutX="1001.0" layoutY="491.0" mnemonicParsing="false" onAction="#resultsButtonOnAction" prefHeight="60.0" prefWidth="209.0" style="-fx-background-color: #191C1C; -fx-font-weight: bold; -fx-cursor: hand;" text="Show result (for demo only)" textFill="WHITE">
