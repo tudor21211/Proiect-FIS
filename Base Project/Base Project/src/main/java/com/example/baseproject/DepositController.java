@@ -49,6 +49,11 @@ private Label invalidCard;
         return t.getText();
     }
 
+    public Double returnSum (Double a, Double b) {
+        return a+b;
+    }
+
+
     public void setBalanceField2(String username) {
         DBConnection connectNow = new DBConnection();
         Connection connection = null;
@@ -65,7 +70,7 @@ private Label invalidCard;
             while (bal.next()) {
                 String balance = bal.getString("balance");
                 intValue = Double.parseDouble(value);
-                intValue = intValue + Double.parseDouble(String.valueOf(balance));
+                intValue = returnSum(intValue,Double.parseDouble(String.valueOf(balance)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
