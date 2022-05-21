@@ -1,0 +1,100 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Base-Project:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Base_Project_jar</output-path>
+    <root id="archive" name="Base-Project.jar">
+      <element id="module-output" name="Base-Project" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/bootstrapfx/bootstrapfx-core/0.4.0/bootstrapfx-core-0.4.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-web/17.0.1/javafx-web-17.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/loadui/testFx/3.1.2/testFx-3.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/14.0.1/guava-14.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-all/1.3/hamcrest-all-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/17.0.1/javafx-fxml-17.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/testfx/testfx-core/4.0.6-alpha/testfx-core-4.0.6-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/findbugs/annotations/3.0.1u2/annotations-3.0.1u2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.1/jsr305-3.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/17.0.1/javafx-media-17.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/17.0.1/javafx-media-17.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/17.0.1/javafx-base-17.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/testfx/testfx-junit/4.0.6-alpha/testfx-junit-4.0.6-alpha.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/net/synedra/validatorfx/0.1.13/validatorfx-0.1.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/eu/hansolo/tilesfx/11.48/tilesfx-11.48.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/12.2.0/ikonli-core-12.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/17.0.1/javafx-graphics-17.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/controlsfx/controlsfx/11.1.0/controlsfx-11.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/dlsc/formsfx/formsfx-core/11.3.2/formsfx-core-11.3.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-web/17.0.1/javafx-web-17.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/17.0.1/javafx-controls-17.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-javafx/12.2.0/ikonli-javafx-12.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/hamcrest-junit/2.0.0.0/hamcrest-junit-2.0.0.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/hamcrest/java-hamcrest/2.0.0.0/java-hamcrest-2.0.0.0.jar" path-in-jar="/" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-console-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-console-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-datetime-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-debug-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-errorhandling-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-file-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-file-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-file-l2-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-handle-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-heap-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-interlocked-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-libraryloader-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-localization-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-memory-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-namedpipe-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-processenvironment-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-processthreads-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-processthreads-l1-1-1.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-profile-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-rtlsupport-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-string-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-synch-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-synch-l1-2-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-sysinfo-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-timezone-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-core-util-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-conio-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-convert-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-environment-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-filesystem-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-heap-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-locale-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-math-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-multibyte-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-private-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-process-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-runtime-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-stdio-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-string-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-time-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/api-ms-win-crt-utility-l1-1-0.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/decora_sse.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/fxplugins.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/glass.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/glib-lite.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/gstreamer-lite.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/javafx_font.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/javafx_iio.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/jfxmedia.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/jfxwebkit.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/msvcp140.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/prism_common.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/prism_d3d.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/prism_sw.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/ucrtbase.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/vcruntime140.dll" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../openjfx-18_windows-x64_bin-sdk/javafx-sdk-18/bin/vcruntime140_1.dll" />
+    </root>
+  </artifact>
+</component>
