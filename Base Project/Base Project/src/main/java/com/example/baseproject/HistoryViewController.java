@@ -110,6 +110,7 @@ public class HistoryViewController {
                 victory1.setStyle("-fx-text-fill:GRAY;-fx-font-weight:bold;-fx-font-size:30px");
                 String score = queryResult1.getString("result");
                 int index = score.indexOf("-");
+                System.out.println("index:"+index);
                 double score_team1 = Double.parseDouble(score.substring(0,index));
                 double score_team2 = Double.parseDouble(score.substring(index,score.length()));
                 int score1 = (int)score_team1;
