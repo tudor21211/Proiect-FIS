@@ -47,6 +47,10 @@ public class WithdrawController  {
         return t.getText();
     }
 
+    public Double returnDifference(double a, double b) {
+       return a-b;
+    }
+
     public void setBalanceField2(String username) {
         DBConnection connectNow = new DBConnection();
         Connection connection = null;
@@ -63,7 +67,7 @@ public class WithdrawController  {
             while (bal.next()) {
                 String balance = bal.getString("balance");
                 intValue = Double.parseDouble(value);
-                intValue = Double.parseDouble(String.valueOf(balance)) - intValue;
+                intValue = returnDifference( Double.parseDouble(String.valueOf(balance)),intValue);
             }
         } catch (SQLException e) {
             e.printStackTrace();
