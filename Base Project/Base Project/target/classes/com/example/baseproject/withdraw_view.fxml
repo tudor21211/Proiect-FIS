@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #1E2020;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.baseproject.WithdrawController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="400.0" style="-fx-border-color: #204a4c; -fx-border-width: 2.5px;">
+         <children>
+            <Button fx:id="cancelWithdrawButton" layoutX="331.0" layoutY="10.0" mnemonicParsing="false" onAction="#withdrawCancelButtonOnAction" prefHeight="27.0" prefWidth="58.0" style="-fx-background-color: #ff0000; -fx-font-weight: bold; -fx-cursor: hand;" text="Cancel" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <Label layoutX="36.0" layoutY="24.0" style="-fx-font-weight: bold;" text="Enter value to withdraw" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="valueField" layoutX="36.0" layoutY="68.0" prefHeight="29.0" prefWidth="103.0" />
+            <Button fx:id="confirmWithdrawButton" layoutX="310.0" layoutY="141.0" mnemonicParsing="false" onAction="#confirmWithdrawButtonOnAction" prefHeight="52.0" prefWidth="87.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-cursor: hand;" text="CONFIRM" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="310.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="141.0" />
+            <Label fx:id="invalid" layoutX="36.0" layoutY="143.0" prefHeight="19.0" prefWidth="134.0" style="-fx-font-weight: bold;" textFill="RED" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
